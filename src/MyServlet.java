@@ -15,6 +15,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//The following websites/tutorials were reference to aid in the completion of this project. Some of this code is from those web sites and not original.
+//http://www.javaknowledge.info/search-from-database-using-servlet-and-jsp/
+//http://www.javawebtutor.com/articles/servlets/servlet_db_example.php
+//http://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example
+//http://www.c-sharpcorner.com/UploadFile/fd0172/how-to-fetch-records-from-database-using-servlet-in-java/
+//https://stackoverflow.com/questions/26702873/search-from-database-java-servlet
+//http://www.theserverside.com/discussions/thread/4369.html
+
+@WebServlet("/Myservlet")
 public class MyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public MyServlet() {
@@ -73,15 +82,15 @@ public class MyServlet extends HttpServlet {
 			ps.setString(8, insurance);
 			
 			int i = ps.executeUpdate();
-			
-			out.println("<html><body style='background-color: lightblue;'><h1 style='text-align:center;'>Welcome to Dr.Johnson's Patient Portal!</h1> "
-					+ "<h2 style='text-align: center;'>The Below Information was Entered into the Patient Database as a New Record</h2>");
+			out.println("<html><body style='background-color: lightblue;'><h1 style='text-align:center;'>Welcome to Dr.Johnson's Patient Portal!</h1><h2 style='text-align: center;'>"
+					+ "The Below Information was Entered into the Patient Database as a New Record</h2>");
 			out.println("<table width='700px' align='center' style='background-color: white; border:1px solid #000000;'><tr>"
 					+ "<td colspan=8 align='center' style='background-color:#2F4F4F; color: white;'><b>New Patient Record</b></td></tr>"
 					+ "<tr align='center' style='background-color: lightgrey;'><td> Patient ID </td><td>Email</td><td>Phone</td><td>First Name</td>"
 					+ "<td>Last Name</td><td>Address</td><td>Age</td><td>Insurance</td></tr>");
 			out.println("<tr><td>" + user + "</td><td>" + email + "</td><td>" + phone + "</td><td>" + firstName + "</td><td>" + lastName + "</td><td>" + address + "</td>"
-					+ "<td>" + age + "</td><td>" + insurance + "</td></tr></table></body></html>");
+					+ "<td>" + age + "</td><td>" + insurance + "</td></tr></table>"
+					+ "</body></html>");
 			
 		} catch (Exception e2) {
 			System.out.println(e2);
@@ -98,8 +107,7 @@ public class MyServlet extends HttpServlet {
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM myTable WHERE MYUSER LIKE ?");
 			ps.setString(1, search);
 			ResultSet rs = ps.executeQuery();
-			out.println("<html><body style='background-color: lightblue;'><h1 style='text-align:center;'>Welcome to Dr.Johnson's Patient Portal!</h1> "
-					+ "<h2 style='text-align: center;'>Below is Your Patient Record:</h2>");
+			out.println("<html><body style='background-color: lightblue;'><h1 style='text-align:center;'>Welcome to Dr.Johnson's Patient Portal!</h1><h2 style='text-align: center;'>Below is Your Patient Record:</h2>");
 			out.println("<table width='700px' align='center' style='background-color: white; border:1px solid #000000;'><tr>"
 					+ "<td colspan=8 align='center' style='background-color:#2F4F4F; color: white;'><b>Patient Record</b></td></tr>"
 					+ "<tr align='center' style='background-color: lightgrey;'><td> Patient ID </td><td>Email</td><td>Phone</td><td>First Name</td>"
